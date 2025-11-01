@@ -3,59 +3,44 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Pre-Test BSES-SF</title>
-  <meta name="description" content="Pre-test BSES-SF untuk mengukur self-efficacy ibu menyusui sebelum menonton modul edukasi ASI.">
-  <link rel="stylesheet" href="style.css">
+  <title>Pre-Test | EduASI</title>
+  <link rel="stylesheet" href="style.css?v=6">
 </head>
 <body>
-  <div class="nav">
-    <div class="nav-inner container">
-      <a class="logo" href="index.html">EduASI</a>
-      <nav>
+  <header class="navbar">
+    <div class="navbar-container">
+      <div class="navbar-logo">
+        <img src="https://cdn-icons-png.flaticon.com/512/3068/3068566.png" class="logo-icon">
+        <a href="index.html" class="logo-text">EduASI</a>
+      </div>
+      <nav class="navbar-menu">
+        <a href="index.html">Beranda</a>
         <a href="modul.html">Modul</a>
-        <a href="pretest.html">Pre-Test</a>
         <a href="posttest.html">Post-Test</a>
-        <a href="hasil.html">Hasil</a>
-        <a href="kontak.html">Kontak</a>
       </nav>
-      <a class="btn btn-brand" href="pretest.html">Mulai Pre-Test</a>
     </div>
-  </div>
+  </header>
 
   <div class="container">
-    <h2>Pre-Test BSES-SF</h2>
-    <p>Jawab sesuai kondisi Anda saat ini sebelum menonton modul. Skala: <strong>STY–TY–KY–Y–SY (1–5)</strong>.</p>
-    <div id="form-pre" class="card"></div>
-    <div class="flex" style="margin-top:10px">
-      <button class="btn btn-brand" id="save-pre">Simpan Pre-Test</button>
-      <button class="btn btn-ghost" id="reset-pre">Reset</button>
-    </div>
+    <h1>Pre-Test (BSES-SF)</h1>
+    <div id="preform"></div>
+    <button id="save-pre" class="btn btn-brand">Simpan Pre-Test</button>
   </div>
 
-  <footer>© 2025 EduASI — Edukasi & penelitian ASI eksklusif.</footer>
+  <footer>© EduASI</footer>
 
-  <!-- Pastikan app.js dimuat sebelum script di bawah -->
-  <script src="app.js"></script>
+  <script src="app.js?v=7"></script>
   <script>
-    document.addEventListener("DOMContentLoaded", function() {
-      const root = document.getElementById('form-pre');
-      if (typeof ASI === 'undefined') {
-        alert('Gagal memuat app.js, pastikan file app.js ada di root folder.');
-        return;
-      }
+    const root = document.getElementById('preform');
+    ASI.buildForm(root, 'pre');
 
-      ASI.buildForm(root, 'pre');
-      document.getElementById('save-pre').onclick = (e) => {
-        e.preventDefault();
-        ASI.save('pre', ASI.readForm(root));
-        alert('✅ Pre-test tersimpan di perangkat Anda.');
-      };
-      document.getElementById('reset-pre').onclick = (e) => {
-        e.preventDefault();
-        localStorage.removeItem('pre');
-        ASI.buildForm(root, 'pre');
-      };
-    });
+    document.getElementById('save-pre').onclick = async (e) => {
+      e.preventDefault();
+      const data = ASI.readForm(root);
+      ASI.save('pre', data);
+      await ASI.kirimKeSheet('pretest', data);
+      alert('✅ Pre-test tersimpan & dikirim ke Google Sheet!');
+    };
   </script>
 </body>
 </html>

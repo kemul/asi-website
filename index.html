@@ -4,14 +4,17 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>EduASI — Edukasi ASI & Kepercayaan Diri</title>
-  <meta name="description" content="Modul ASI + pengukuran BSES-SF pre/post.">
-  <link rel="stylesheet" href="style.css?v=8">
+  <meta name="description" content="Website edukasi ASI eksklusif dengan modul video dan pengukuran self-efficacy (BSES-SF) pre dan post.">
+  <link rel="stylesheet" href="style.css?v=10">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Nunito+Sans:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
   <!-- NAVBAR -->
   <header class="navbar">
     <div class="navbar-container">
+      <div class="navbar-logo">
+        <span class="logo-text">EduASI</span>
+      </div>
       <nav class="navbar-menu">
         <a href="modul.html">Modul</a>
         <a href="pretest.html">Pre-Test</a>
@@ -23,35 +26,53 @@
     </div>
   </header>
 
-  <!-- HERO -->
+  <!-- HERO SECTION -->
   <section class="hero">
     <div class="container hero-inner">
       <div class="hero-text">
         <span class="badge">💗 Tema: Edukasi ASI</span>
-        <p>	⁠Hai Ibu!
-Yuk, belajar dan berbagi seputar ASI dan menyusui. Kami hadir untuk membantu Ibu menjalani masa menyusui dengan bahagia, percaya diri, dan penuh cinta!
-.</p>
-      </div>
-      <div class="hero-img">
-        <img class="hero-illustration" alt="ibu menyusui" src="https://cdn-icons-png.flaticon.com/512/3068/3068566.png">
+        <h1>Selamat Datang di <strong>EduASI</strong></h1>
+        <p>
+          Hai Ibu! Yuk, belajar dan berbagi seputar ASI dan menyusui.
+          Kami hadir untuk membantu Ibu menjalani masa menyusui dengan
+          bahagia, percaya diri, dan penuh cinta 💕.
+        </p>
+        <div class="hero-actions">
+          <a href="modul.html" class="btn btn-brand">Lihat Modul</a>
+          <a href="pretest.html" class="btn btn-ghost">Mulai Pre-Test</a>
+        </div>
       </div>
     </div>
   </section>
 
+  <!-- ALUR / INFO -->
   <section class="grid" style="grid-template-columns:1fr 1fr;margin-top:40px">
     <div class="card">
-      <h2>Alur</h2>
+      <h2>📘 Alur Pembelajaran</h2>
       <ul class="clean">
-        <li>Isi <strong>Pre-Test</strong></li>
-        <li>Tonton <strong>Modul Video</strong></li>
-        <li>Isi <strong>Post-Test</strong></li>
-        <li>Lihat <strong>Hasil</strong> & unduh CSV</li>
+        <li>1️⃣ Isi <strong>Pre-Test</strong> terlebih dahulu.</li>
+        <li>2️⃣ Tonton <strong>Modul Video</strong> pembelajaran ASI.</li>
+        <li>3️⃣ Isi <strong>Post-Test</strong> setelah menonton modul.</li>
+        <li>4️⃣ Lihat <strong>Hasil</strong> & unduh laporan belajar.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>🎯 Tujuan EduASI</h2>
+      <ul class="clean">
+        <li>Meningkatkan pengetahuan & kepercayaan diri ibu menyusui.</li>
+        <li>Memberikan edukasi berbasis sains & empati.</li>
+        <li>Mendukung ASI eksklusif selama 6 bulan pertama kehidupan bayi.</li>
       </ul>
     </div>
   </section>
 
-  <footer>© <span id="year"></span> EduASI</footer>
-  <script src="app.js?v=8"></script>
-  <script>document.getElementById('year').textContent=new Date().getFullYear();</script>
+  <!-- FOOTER -->
+  <footer>© <span id="year"></span> EduASI — Edukasi & Penelitian ASI Eksklusif.</footer>
+
+  <script src="app.js?v=10"></script>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>

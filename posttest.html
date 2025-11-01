@@ -3,75 +3,44 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Post-Test BSES-SF</title>
-  <meta name="description" content="Post-test BSES-SF untuk mengukur perubahan self-efficacy ibu menyusui setelah mempelajari modul EduASI.">
-  <link rel="stylesheet" href="style.css">
+  <title>Post-Test | EduASI</title>
+  <link rel="stylesheet" href="style.css?v=6">
 </head>
 <body>
-  <!-- 🌷 NAVBAR -->
-  <div class="nav">
-    <div class="nav-inner container">
-      <a class="logo" href="index.html">👩🏻‍🍼 EduASI</a>
-      <nav>
+  <header class="navbar">
+    <div class="navbar-container">
+      <div class="navbar-logo">
+        <img src="https://cdn-icons-png.flaticon.com/512/3068/3068566.png" class="logo-icon">
+        <a href="index.html" class="logo-text">EduASI</a>
+      </div>
+      <nav class="navbar-menu">
+        <a href="index.html">Beranda</a>
         <a href="modul.html">Modul</a>
         <a href="pretest.html">Pre-Test</a>
-        <a href="posttest.html" class="active">Post-Test</a>
-        <a href="hasil.html">Hasil</a>
-        <a href="kontak.html">Kontak</a>
       </nav>
-      <a class="btn btn-brand" href="pretest.html">Mulai Pre-Test</a>
     </div>
-  </div>
+  </header>
 
-  <!-- 🌸 KONTEN -->
   <div class="container">
-    <h2>Post-Test BSES-SF</h2>
-    <p>Jawab setelah mempelajari <a href="modul.html">modul video</a>. Skala: <strong>STY–TY–KY–Y–SY (1–5)</strong>.</p>
-
-    <div id="form-post"></div>
-
-    <div class="flex" style="margin-top:10px">
-      <button class="btn btn-brand" id="save-post">Simpan Post-Test</button>
-      <button class="btn btn-ghost" id="reset-post">Reset</button>
-    </div>
+    <h1>Post-Test (BSES-SF)</h1>
+    <div id="postform"></div>
+    <button id="save-post" class="btn btn-brand">Simpan Post-Test</button>
   </div>
 
-  <footer>© 2025 EduASI — Edukasi & penelitian ASI eksklusif.</footer>
+  <footer>© EduASI</footer>
 
-  <script src="app.js?v=3"></script>
+  <script src="app.js?v=7"></script>
   <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const root = document.getElementById("form-post");
+    const root = document.getElementById('postform');
+    ASI.buildForm(root, 'post');
 
-      if (typeof ASI === "undefined" || !ASI.buildForm) {
-        alert("⚠️ Gagal memuat app.js. Pastikan file app.js ada di root folder.");
-        return;
-      }
-
-      // 🔹 Render form post-test
-      ASI.buildForm(root, "post");
-
-      // 🔹 Simpan hasil post-test
-      document.getElementById("save-post").onclick = (e) => {
-        e.preventDefault();
-        const data = ASI.readForm(root);
-        if (!data || Object.keys(data).length === 0) {
-          alert("Harap isi semua pertanyaan sebelum menyimpan.");
-          return;
-        }
-        ASI.save("post", data);
-        alert("✅ Post-test berhasil disimpan!");
-      };
-
-      // 🔹 Reset form
-      document.getElementById("reset-post").onclick = (e) => {
-        e.preventDefault();
-        if (confirm("Hapus semua jawaban post-test?")) {
-          localStorage.removeItem("post");
-          ASI.buildForm(root, "post");
-        }
-      };
-    });
+    document.getElementById('save-post').onclick = async (e) => {
+      e.preventDefault();
+      const data = ASI.readForm(root);
+      ASI.save('post', data);
+      await ASI.kirimKeSheet('posttest', data);
+      alert('✅ Post-test tersimpan & dikirim ke Google Sheet!');
+    };
   </script>
 </body>
 </html>

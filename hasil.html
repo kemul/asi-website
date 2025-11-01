@@ -1,1 +1,59 @@
-<!doctype html><html lang='id'><head><meta charset='utf-8'><title>Hasil</title><link rel='stylesheet' href='style.css'></head><body><div class='nav'><div class='nav-inner container'><a class='logo' href='index.html'>EduASI</a><nav><a href='modul.html'>Modul</a><a href='pretest.html'>Pre-Test</a><a href='posttest.html'>Post-Test</a><a href='hasil.html'>Hasil</a><a href='kontak.html'>Kontak</a></nav><a class='btn btn-brand' href='pretest.html'>Mulai Pre-Test</a></div></div><div class='container'><h2>Hasil</h2></div></body></html>
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hasil & Ringkasan</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="nav">
+    <div class="nav-inner container">
+      <a class="logo" href="index.html">EduASI</a>
+      <nav>
+        <a href="modul.html">Modul</a>
+        <a href="pretest.html">Pre-Test</a>
+        <a href="posttest.html">Post-Test</a>
+        <a href="hasil.html">Hasil</a>
+        <a href="kontak.html">Kontak</a>
+      </nav>
+      <a class="btn btn-brand" href="pretest.html">Mulai Pre-Test</a>
+    </div>
+  </div>
+
+  <div class="container">
+    <h2>Hasil & Ringkasan</h2>
+    <p>Skor dihitung: STY=1, TY=2, KY=3, Y=4, SY=5. Perubahan = Post − Pre.</p>
+    <div class="grid" style="grid-template-columns:1fr 1fr 1fr">
+      <div class="card">
+        <h3>Skor Pre-Test</h3>
+        <div id="preTotal" style="font-size:36px;font-weight:800">–</div>
+        <div class="progress" id="preBar"><span style="width:0%"></span></div>
+      </div>
+      <div class="card">
+        <h3>Skor Post-Test</h3>
+        <div id="postTotal" style="font-size:36px;font-weight:800">–</div>
+        <div class="progress" id="postBar"><span style="width:0%"></span></div>
+      </div>
+      <div class="card">
+        <h3>Perubahan</h3>
+        <div id="delta" style="font-size:36px;font-weight:800">–</div>
+        <p id="deltaNote" style="font-size:13px;color:#6b7280">Isi pre-test dan post-test untuk melihat perubahan.</p>
+      </div>
+    </div>
+    <div class="flex" style="margin-top:12px">
+      <button class="btn btn-ghost" id="downloadCsv">Unduh CSV</button>
+      <button class="btn btn-ghost" id="clearAll">Hapus Semua Data</button>
+    </div>
+  </div>
+
+  <footer>© 2025 EduASI — Edukasi & penelitian ASI eksklusif.</footer>
+
+  <script src="app.js?v=4"></script>
+  <script>
+    ASI.updateSummary && ASI.updateSummary();
+    document.getElementById('downloadCsv').onclick = ASI.toCSV;
+    document.getElementById('clearAll').onclick = () => { localStorage.clear(); ASI.updateSummary(); location.reload(); };
+  </script>
+</body>
+</html>

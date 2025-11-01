@@ -1,1 +1,58 @@
-<!doctype html><html lang='id'><head><meta charset='utf-8'><title>EduASI</title><link rel='stylesheet' href='style.css'></head><body><div class='nav'><div class='nav-inner container'><a class='logo' href='index.html'>EduASI</a><nav><a href='modul.html'>Modul</a><a href='pretest.html'>Pre-Test</a><a href='posttest.html'>Post-Test</a><a href='hasil.html'>Hasil</a><a href='kontak.html'>Kontak</a></nav><a class='btn btn-brand' href='pretest.html'>Mulai Pre-Test</a></div></div><div class='container'><h1>EduASI</h1><p>Landing Page.</p></div></body></html>
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pengaruh Media Digital terhadap Efficacy Ibu Menyusui</title>
+  <meta name="description" content="Website edukasi ASI dengan modul video dan pengukuran self-efficacy (BSES-SF) pre/post.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="nav">
+    <div class="nav-inner container">
+      <a class="logo" href="index.html">EduASI</a>
+      <nav>
+        <a href="modul.html">Modul</a>
+        <a href="pretest.html">Pre-Test</a>
+        <a href="posttest.html">Post-Test</a>
+        <a href="hasil.html">Hasil</a>
+        <a href="kontak.html">Kontak</a>
+      </nav>
+      <a class="btn btn-brand" href="pretest.html">Mulai Pre-Test</a>
+    </div>
+  </div>
+
+  <div class="container">
+    <section class="hero">
+      <div class="container">
+        <span class="badge">Tema: Edukasi ASI</span>
+        <h1>Pengaruh media digital terhadap <strong style="color:var(--brand-dark)">efficacy (kepercayaan diri)</strong> ibu menyusui dalam ASI eksklusif</h1>
+        <p>Pelajari modul singkat, lalu ukur perubahan kepercayaan diri menyusui Anda melalui <em>pre-test</em> dan <em>post-test</em> berbasis kuesioner BSES-SF (Dennis, 2002).</p>
+        <div class="flex" style="margin-top:12px">
+          <a class="btn btn-brand" href="pretest.html">Mulai Pre-Test</a>
+          <a class="btn btn-ghost" href="modul.html">Lihat Modul</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="grid" style="grid-template-columns:1fr 1fr;margin-top:18px">
+      <div class="card">
+        <h2>Bagaimana alurnya?</h2>
+        <ul class="clean">
+          <li>Isi <strong>Pre-Test</strong> (BSES-SF).</li>
+          <li>Tonton <strong>modul video</strong> seputar ASI.</li>
+          <li>Isi <strong>Post-Test</strong>.</li>
+          <li>Lihat <strong>Hasil</strong>, unduh CSV.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h2>Privasi</h2>
+        <p>Semua jawaban disimpan di perangkat Anda (localStorage). Tidak ada pengiriman data ke server.</p>
+      </div>
+    </section>
+  </div>
+
+  <footer>© <span id="year"></span> EduASI — Edukasi & penelitian ASI eksklusif.</footer>
+  <script>document.getElementById('year').textContent=new Date().getFullYear();</script>
+</body>
+</html>

@@ -1,5 +1,18 @@
+const ITEMS = [
+  "Saya merasa bahwa bayi saya mendapatkan cukup ASI",
+  "Saya tetap dapat menyusui bayi saya walaupun banyak hal yang saya lakukan",
+  "Saya memberikan ASI kepada bayi saya tanpa tambahan susu formula",
+  "Saya memastikan bahwa bayi saya tidak mendapatkan makanan apapun selain ASI",
+  "Saya mampu mengelola keadaan saat menyusui untuk kenyamanan saya",
+  "Saya percaya diri menyusui di depan orang lain",
+  "Saya merasa nyaman menyusui bayi saya kapan pun ia butuh",
+  "Saya mampu menyusui meski sedang lelah",
+  "Saya percaya ASI saya cukup untuk bayi saya",
+  "Saya tahu cara mengatasi masalah seperti puting lecet atau bengkak",
+  "Saya tahu posisi menyusui yang nyaman bagi saya dan bayi",
+  "Saya yakin dapat terus menyusui selama 6 bulan pertama"
+];
 
-const ITEMS = ["Saya merasa bahwa bayi saya mendapatkan cukup ASI", "Saya tetap dapat menyusui bayi saya walaupun banyak hal yang saya lakukan", "Saya memberikan ASI kepada bayi saya tanpa tambahan susu formula", "Saya memastikan bahwa bayi saya tidak mendapatkan makanan apapun selain ASI", "Saya mampu mengelola keadaan saat menyusui untuk kenyamanan saya", "Saya akan tetap menyusui bayi saya bahkan saat bayi saya menangis", "Saya tetap nyaman dalam menyusui saat ada anggota keluarga atau orang lain di sekitar saya", "Saya puas dengan pengalaman menyusui saya", "Saya memberikan ASI kepada bayi saya dengan satu payudara sampai habis lalu beralih ke payudara sebelahnya", "Saya terus menyusui bayi saya untuk memberikan makanan", "Saya mampu memenuhi keinginan menyusui bayi saya", "Saya mengetahui tanda ketika bayi saya selesai menyusu"];
 const OPTIONS = [
   { key: 'STY', label: 'Sangat Tidak Yakin', value: 1 },
   { key: 'TY',  label: 'Tidak Yakin',        value: 2 },
@@ -41,7 +54,7 @@ function buildForm(root, storageKey){
 }
 
 function readForm(root){
-  const data = {};
+  const data = {}
   ITEMS.forEach((_,i)=>{
     const el = root.querySelector(`input[name="q${i}"]:checked`);
     data['q'+i] = el ? Number(el.value) : 0;
@@ -58,18 +71,16 @@ function updateSummary() {
 
   if ($('#preTotal')) {
     $('#preTotal').textContent = sPre || '–';
-    const pct = max ? Math.round(100*sPre/max) : 0;
-    $('#preBar').firstElementChild.style.width = pct+'%';
+    $('#preBar').firstElementChild.style.width = (max?Math.round(100*sPre/max):0)+'%';
   }
   if ($('#postTotal')) {
     $('#postTotal').textContent = sPost || '–';
-    const pct2 = max ? Math.round(100*sPost/max) : 0;
-    $('#postBar').firstElementChild.style.width = pct2+'%';
+    $('#postBar').firstElementChild.style.width = (max?Math.round(100*sPost/max):0)+'%';
   }
   if ($('#delta')) {
     const d = sPost - sPre;
     $('#delta').textContent = (isNaN(d) ? '–' : (d>0?'+':'') + d);
-    if (!isNaN(d)) {
+    if (!isNaN(d) && $('#deltaNote')) {
       $('#deltaNote').textContent = d>0 ? 'Kepercayaan diri meningkat.' : (d<0 ? 'Kepercayaan diri menurun.' : 'Tidak ada perubahan.');
     }
   }
@@ -87,7 +98,7 @@ function toCSV(){
     ['Post', ...ITEMS.map((_,i)=> post['q'+i] || ''), sPost],
     ['Delta', ...ITEMS.map((_,i)=> (post['q'+i]||0)-(pre['q'+i]||0)), delta],
   ];
-  const csv = rows.map(r=>r.join(',')).join('\n');
+  const csv = rows.map(r=>r.join(',')).join('\\n');
   const blob = new Blob([csv],{type:'text/csv;charset=utf-8;'});
   const url = URL.createObjectURL(blob);
   const a=document.createElement('a');

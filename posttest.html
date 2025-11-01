@@ -1,1 +1,59 @@
-<!doctype html><html lang='id'><head><meta charset='utf-8'><title>Post-Test</title><link rel='stylesheet' href='style.css'></head><body><div class='nav'><div class='nav-inner container'><a class='logo' href='index.html'>EduASI</a><nav><a href='modul.html'>Modul</a><a href='pretest.html'>Pre-Test</a><a href='posttest.html'>Post-Test</a><a href='hasil.html'>Hasil</a><a href='kontak.html'>Kontak</a></nav><a class='btn btn-brand' href='pretest.html'>Mulai Pre-Test</a></div></div><div class='container'><h2>Post-Test</h2><div id='form-post'></div></div></body></html>
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Post-Test BSES-SF</title>
+  <meta name="description" content="Post-test BSES-SF untuk mengukur perubahan self-efficacy ibu menyusui setelah mempelajari modul.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="nav">
+    <div class="nav-inner container">
+      <a class="logo" href="index.html">EduASI</a>
+      <nav>
+        <a href="modul.html">Modul</a>
+        <a href="pretest.html">Pre-Test</a>
+        <a href="posttest.html">Post-Test</a>
+        <a href="hasil.html">Hasil</a>
+        <a href="kontak.html">Kontak</a>
+      </nav>
+      <a class="btn btn-brand" href="pretest.html">Mulai Pre-Test</a>
+    </div>
+  </div>
+
+  <div class="container">
+    <h2>Post-Test BSES-SF</h2>
+    <p>Jawab setelah mempelajari <a href="modul.html">modul video</a>. Skala: <strong>STY–TY–KY–Y–SY (1–5)</strong>.</p>
+    <div id="form-post" class="card"></div>
+    <div class="flex" style="margin-top:10px">
+      <button class="btn btn-brand" id="save-post">Simpan Post-Test</button>
+      <button class="btn btn-ghost" id="reset-post">Reset</button>
+    </div>
+  </div>
+
+  <footer>© 2025 EduASI — Edukasi & penelitian ASI eksklusif.</footer>
+
+  <script src="app.js?v=4"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const root = document.getElementById("form-post");
+      if (typeof ASI === "undefined" || !ASI.buildForm) { alert("Gagal memuat app.js"); return; }
+      ASI.buildForm(root, "post");
+      document.getElementById("save-post").onclick = (e) => {
+        e.preventDefault();
+        const data = ASI.readForm(root);
+        ASI.save("post", data);
+        alert("✅ Post-test tersimpan!");
+      };
+      document.getElementById("reset-post").onclick = (e) => {
+        e.preventDefault();
+        if (confirm("Hapus semua jawaban post-test?")) {
+          localStorage.removeItem("post");
+          ASI.buildForm(root, "post");
+        }
+      };
+    });
+  </script>
+</body>
+</html>

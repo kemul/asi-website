@@ -1,1 +1,59 @@
-<!doctype html><html lang='id'><head><meta charset='utf-8'><title>Pre-Test</title><link rel='stylesheet' href='style.css'></head><body><div class='nav'><div class='nav-inner container'><a class='logo' href='index.html'>EduASI</a><nav><a href='modul.html'>Modul</a><a href='pretest.html'>Pre-Test</a><a href='posttest.html'>Post-Test</a><a href='hasil.html'>Hasil</a><a href='kontak.html'>Kontak</a></nav><a class='btn btn-brand' href='pretest.html'>Mulai Pre-Test</a></div></div><div class='container'><h2>Pre-Test</h2><div id='form-pre'></div></div></body></html>
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pre-Test BSES-SF</title>
+  <meta name="description" content="Pre-test BSES-SF untuk mengukur self-efficacy ibu menyusui sebelum menonton modul edukasi ASI.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="nav">
+    <div class="nav-inner container">
+      <a class="logo" href="index.html">EduASI</a>
+      <nav>
+        <a href="modul.html">Modul</a>
+        <a href="pretest.html">Pre-Test</a>
+        <a href="posttest.html">Post-Test</a>
+        <a href="hasil.html">Hasil</a>
+        <a href="kontak.html">Kontak</a>
+      </nav>
+      <a class="btn btn-brand" href="pretest.html">Mulai Pre-Test</a>
+    </div>
+  </div>
+
+  <div class="container">
+    <h2>Pre-Test BSES-SF</h2>
+    <p>Jawab sesuai kondisi Anda saat ini sebelum menonton modul. Skala: <strong>STY–TY–KY–Y–SY (1–5)</strong>.</p>
+    <div id="form-pre" class="card"></div>
+    <div class="flex" style="margin-top:10px">
+      <button class="btn btn-brand" id="save-pre">Simpan Pre-Test</button>
+      <button class="btn btn-ghost" id="reset-pre">Reset</button>
+    </div>
+  </div>
+
+  <footer>© 2025 EduASI — Edukasi & penelitian ASI eksklusif.</footer>
+
+  <script src="app.js?v=4"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const root = document.getElementById("form-pre");
+      if (typeof ASI === "undefined" || !ASI.buildForm) { alert("Gagal memuat app.js"); return; }
+      ASI.buildForm(root, "pre");
+      document.getElementById("save-pre").onclick = (e) => {
+        e.preventDefault();
+        const data = ASI.readForm(root);
+        ASI.save("pre", data);
+        alert("✅ Pre-test tersimpan!");
+      };
+      document.getElementById("reset-pre").onclick = (e) => {
+        e.preventDefault();
+        if (confirm("Hapus semua jawaban pre-test?")) {
+          localStorage.removeItem("pre");
+          ASI.buildForm(root, "pre");
+        }
+      };
+    });
+  </script>
+</body>
+</html>

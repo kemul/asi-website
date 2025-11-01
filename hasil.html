@@ -3,58 +3,39 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Hasil & Ringkasan</title>
-  <meta name="description" content="Website edukasi ASI dengan modul video dan pengukuran self-efficacy (BSES-SF) pre/post.">
-  <link rel="stylesheet" href="style.css">
+  <title>Hasil | EduASI</title>
+  <link rel="stylesheet" href="style.css?v=6">
 </head>
 <body>
-  <div class="nav">
-    <div class="nav-inner container">
-      <a class="logo" href="index.html">EduASI</a>
-      <nav>
+  <header class="navbar">
+    <div class="navbar-container">
+      <div class="navbar-logo">
+        <img src="https://cdn-icons-png.flaticon.com/512/3068/3068566.png" class="logo-icon">
+        <a href="index.html" class="logo-text">EduASI</a>
+      </div>
+      <nav class="navbar-menu">
+        <a href="index.html">Beranda</a>
         <a href="modul.html">Modul</a>
-        <a href="pretest.html">Pre-Test</a>
-        <a href="posttest.html">Post-Test</a>
-        <a href="hasil.html">Hasil</a>
-        <a href="kontak.html">Kontak</a>
       </nav>
-      <a class="btn btn-brand" href="pretest.html">Mulai Pre-Test</a>
+    </div>
+  </header>
+
+  <div class="container">
+    <h1>Hasil Pengukuran Kepercayaan Diri (BSES-SF)</h1>
+    <div class="card">
+      <p>Skor Pre-Test: <strong id="preTotal">–</strong></p>
+      <div class="progress" id="preBar"><span></span></div>
+      <p>Skor Post-Test: <strong id="postTotal">–</strong></p>
+      <div class="progress" id="postBar"><span></span></div>
+      <p>Perubahan: <strong id="delta">–</strong></p>
+      <p id="deltaNote"></p>
+      <button class="btn btn-brand" onclick="ASI.toCSV()">Unduh CSV</button>
     </div>
   </div>
-  <div class="container">
 
-<h2>Hasil & Ringkasan</h2>
-<p>Skor dihitung dengan pemetaan STY=1, TY=2, KY=3, Y=4, SY=5. Perubahan = Post − Pre.</p>
-<div class="grid" style="grid-template-columns:1fr 1fr 1fr">
-  <div class="card">
-    <h3>Skor Pre-Test</h3>
-    <div id="preTotal" style="font-size:36px;font-weight:800">–</div>
-    <div class="progress" id="preBar"><span style="width:0%"></span></div>
-  </div>
-  <div class="card">
-    <h3>Skor Post-Test</h3>
-    <div id="postTotal" style="font-size:36px;font-weight:800">–</div>
-    <div class="progress" id="postBar"><span style="width:0%"></span></div>
-  </div>
-  <div class="card">
-    <h3>Perubahan</h3>
-    <div id="delta" style="font-size:36px;font-weight:800">–</div>
-    <p id="deltaNote" style="font-size:13px;color:#6b7280">Isi pre-test dan post-test untuk melihat perubahan.</p>
-  </div>
-</div>
-<div class="flex" style="margin-top:12px">
-  <button class="btn btn-ghost" id="downloadCsv">Unduh CSV</button>
-  <button class="btn btn-ghost" id="clearAll">Hapus Semua Data</button>
-</div>
-<script>
-  ASI.updateSummary();
-  document.getElementById('downloadCsv').onclick = ASI.toCSV;
-  document.getElementById('clearAll').onclick = ()=>{ localStorage.clear(); ASI.updateSummary(); location.reload(); };
-</script>
+  <footer>© EduASI</footer>
 
-  </div>
-  <footer>© <span id="year"></span> EduASI — Edukasi & penelitian ASI eksklusif.</footer>
-  <script src="app.js"></script>
-  <script>document.getElementById('year').textContent=new Date().getFullYear();</script>
+  <script src="app.js?v=7"></script>
+  <script>ASI.updateSummary();</script>
 </body>
 </html>

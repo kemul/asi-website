@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Post-Test BSES-SF</title>
-  <meta name="description" content="Website edukasi ASI dengan modul video dan pengukuran self-efficacy (BSES-SF) pre/post.">
+  <meta name="description" content="Post-test BSES-SF untuk mengukur perubahan self-efficacy ibu menyusui setelah menonton modul edukasi ASI.">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -21,25 +21,20 @@
       <a class="btn btn-brand" href="pretest.html">Mulai Pre-Test</a>
     </div>
   </div>
+
   <div class="container">
-
-<h2>Post-Test BSES-SF</h2>
-<p>Jawab setelah mempelajari <a href="modul.html">modul video</a>. Skala: <strong>STY–TY–KY–Y–SY (1–5)</strong>.</p>
-<div id="form-post" class="card"></div>
-<div class="flex" style="margin-top:10px">
-  <button class="btn btn-brand" id="save-post">Simpan Post-Test</button>
-  <button class="btn btn-ghost" id="reset-post">Reset</button>
-</div>
-<script>
-  const root2 = document.getElementById('form-post');
-  ASI.buildForm(root2,'post');
-  document.getElementById('save-post').onclick = (e)=>{ e.preventDefault(); ASI.save('post', ASI.readForm(root2)); alert('Post-test tersimpan.'); };
-  document.getElementById('reset-post').onclick = (e)=>{ e.preventDefault(); localStorage.removeItem('post'); ASI.buildForm(root2,'post'); };
-</script>
-
+    <h2>Post-Test BSES-SF</h2>
+    <p>Jawab setelah mempelajari <a href="modul.html">modul video</a>. Skala: <strong>STY–TY–KY–Y–SY (1–5)</strong>.</p>
+    <div id="form-post" class="card"></div>
+    <div class="flex" style="margin-top:10px">
+      <button class="btn btn-brand" id="save-post">Simpan Post-Test</button>
+      <button class="btn btn-ghost" id="reset-post">Reset</button>
+    </div>
   </div>
-  <footer>© <span id="year"></span> EduASI — Edukasi & penelitian ASI eksklusif.</footer>
+
+  <footer>© 2025 EduASI — Edukasi & penelitian ASI eksklusif.</footer>
+
   <script src="app.js"></script>
-  <script>document.getElementById('year').textContent=new Date().getFullYear();</script>
-</body>
-</html>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const roo

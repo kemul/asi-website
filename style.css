@@ -1,0 +1,30 @@
+
+:root{
+  --brand:#ff8fab;--brand-dark:#ef718f;--mint:#c7f9cc;--cream:#fff5f7;--ink:#263238;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;color:var(--ink);background:var(--cream)}
+.container{max-width:1100px;margin:0 auto;padding:16px}
+.nav{position:sticky;top:0;background:rgba(255,255,255,.85);backdrop-filter:saturate(1.2) blur(8px);border-bottom:1px solid #eee;z-index:10}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;padding:10px 16px}
+a.logo{font-weight:800;text-decoration:none;color:var(--brand-dark)}
+.nav a{color:#333;text-decoration:none;margin:0 10px}
+.btn{display:inline-block;padding:10px 16px;border-radius:14px;text-decoration:none}
+.btn-brand{background:var(--brand);color:#fff}
+.btn-ghost{background:#fff;border:1px solid #eee;color:#111}
+.badge{background:#fde2e4;color:#9c1c4a;padding:6px 10px;border-radius:999px;font-size:12px}
+.grid{display:grid;gap:16px}
+.card{background:#fff;border-radius:16px;padding:16px;box-shadow:0 10px 26px rgba(0,0,0,.07)}
+.hero{background:linear-gradient(#fff,var(--cream));padding:40px 0}
+h1,h2,h3{margin:6px 0}
+footer{font-size:12px;color:#6b7280;text-align:center;padding:24px}
+.progress{width:100%;height:12px;border-radius:999px;background:#f3f4f6}
+.progress>span{display:block;height:100%;border-radius:999px;background:var(--brand)}
+.form-row{border:1px solid #eee;border-radius:12px;padding:12px;background:#fff;margin-bottom:10px}
+.qnum{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;background:var(--brand);color:#fff;font-size:12px;margin-right:8px}
+.opt{display:inline-flex;align-items:center;gap:6px;padding:8px;border:1px solid #eee;border-radius:10px;margin:6px 6px 0 0}
+.flex{display:flex;gap:10px;align-items:center}
+.video{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:16px}
+.video iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0}
+ul.clean{padding-left:16px}

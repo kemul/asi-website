@@ -1,5 +1,23 @@
+// --------------------
+// Konstanta & Data
+// --------------------
+const SHEET_URL = "https://script.google.com/macros/s/AKfycbw6OEIQLU5qnQKz8ZSDi6GRq0UI_EYmQBicameWptWrN23Yn1ZTROc865agHD2PiOPT/exec";
 
-const ITEMS = ["Saya merasa bahwa bayi saya mendapatkan cukup ASI", "Saya tetap dapat menyusui bayi saya walaupun banyak hal yang saya lakukan", "Saya memberikan ASI kepada bayi saya tanpa tambahan susu formula", "Saya memastikan bahwa bayi saya tidak mendapatkan makanan apapun selain ASI", "Saya mampu mengelola keadaan saat menyusui untuk kenyamanan saya", "Saya akan tetap menyusui bayi saya bahkan saat bayi saya menangis", "Saya tetap nyaman dalam menyusui saat ada anggota keluarga atau orang lain di sekitar saya", "Saya puas dengan pengalaman menyusui saya", "Saya memberikan ASI kepada bayi saya dengan satu payudara sampai habis lalu beralih ke payudara sebelahnya", "Saya terus menyusui bayi saya untuk memberikan makanan", "Saya mampu memenuhi keinginan menyusui bayi saya", "Saya mengetahui tanda ketika bayi saya selesai menyusu"];
+const ITEMS = [
+  "Saya merasa bahwa bayi saya mendapatkan cukup ASI",
+  "Saya tetap dapat menyusui bayi saya walaupun banyak hal yang saya lakukan",
+  "Saya memberikan ASI kepada bayi saya tanpa tambahan susu formula",
+  "Saya memastikan bahwa bayi saya tidak mendapatkan makanan apapun selain ASI",
+  "Saya mampu mengelola keadaan saat menyusui untuk kenyamanan saya",
+  "Saya akan tetap menyusui bayi saya bahkan saat bayi saya menangis",
+  "Saya tetap nyaman dalam menyusui saat ada anggota keluarga atau orang lain di sekitar saya",
+  "Saya puas dengan pengalaman menyusui saya",
+  "Saya memberikan ASI kepada bayi saya dengan satu payudara sampai habis lalu beralih ke payudara sebelahnya",
+  "Saya terus menyusui bayi saya untuk memberikan makanan",
+  "Saya mampu memenuhi keinginan menyusui bayi saya",
+  "Saya mengetahui tanda ketika bayi saya selesai menyusu"
+];
+
 const OPTIONS = [
   { key: 'STY', label: 'Sangat Tidak Yakin', value: 1 },
   { key: 'TY',  label: 'Tidak Yakin',        value: 2 },
@@ -8,11 +26,17 @@ const OPTIONS = [
   { key: 'SY',  label: 'Sangat Yakin',       value: 5 },
 ];
 
+// --------------------
+// Helper Functions
+// --------------------
 const $ = (s) => document.querySelector(s);
 const save = (k,v)=>localStorage.setItem(k, JSON.stringify(v));
 const load = (k,d=null)=>JSON.parse(localStorage.getItem(k) || JSON.stringify(d));
 const calcScore = (obj)=>Object.values(obj||{}).reduce((a,b)=>a+Number(b||0),0);
 
+// --------------------
+// Form Builder
+// --------------------
 function buildForm(root, storageKey){
   root.innerHTML = "";
   ITEMS.forEach((q,i)=>{
@@ -49,6 +73,26 @@ function readForm(root){
   return data;
 }
 
+// --------------------
+// Integrasi ke Google Sheet
+// --------------------
+async function kirimKeSheet(type, data) {
+  try {
+    await fetch(SHEET_URL, {
+      method: "POST",
+      mode: "no-cors",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ type, answers: data }),
+    });
+    console.log(`✅ ${type} terkirim ke Google Sheets`);
+  } catch (err) {
+    console.error("❌ Gagal kirim ke Google Sheet:", err);
+  }
+}
+
+// --------------------
+// Update Hasil
+// --------------------
 function updateSummary() {
   const pre = load('pre', {});
   const post = load('post', {});
@@ -75,6 +119,9 @@ function updateSummary() {
   }
 }
 
+// --------------------
+// Export ke CSV
+// --------------------
 function toCSV(){
   const pre = load('pre', {});
   const post = load('post', {});
@@ -95,4 +142,7 @@ function toCSV(){
   URL.revokeObjectURL(url);
 }
 
-window.ASI = { buildForm, readForm, updateSummary, toCSV, save, load };
+// --------------------
+// Global Object
+// --------------------
+window.ASI = { buildForm, readForm, updateSummary, toCSV, save, load, kirimKeSheet };
